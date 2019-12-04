@@ -35,6 +35,7 @@ class MainActivity : AppCompatActivity(), SurfaceHolder.Callback, Camera.Preview
         wechatScanner.releaseAssert(view.context)
         wechatScanner.init(view.context)
         wechatScanner.setReader()
+        textView.text = wechatScanner.version()
     }
 
     fun onClickOpen(view: View) {
