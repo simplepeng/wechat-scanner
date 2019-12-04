@@ -45,6 +45,7 @@ public class WxQbarNative {
      * @param qBarReportMsgArr 返回的数组
      * @param i                qBarId
      * @return 被扫描出的数量
+     * @see QbarNative#ScanImage(byte[], int, int, int)
      */
     protected static native int GetDetailResults(QbarNative.QBarResultJNI[] qBarResultJNIArr, QbarNative.QBarPoint[] qBarPointArr, QBarReportMsg[] qBarReportMsgArr, int i);
 

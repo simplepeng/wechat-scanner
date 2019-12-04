@@ -49,12 +49,15 @@ public class QbarNative {
          * 字符集合的内容，常见格式：UTF-8、ASCII、ISO8859-1
          * 一般使用 new String(data, charset) 可解出数据
          *
-         *
          * @see String
          * @see java.nio.charset.Charset
          */
         public byte[] data;
-        public int    typeID;
+
+        /**
+         * 未知含义
+         */
+        public int typeID;
 
         /**
          * 当前扫出来二维码类型
@@ -75,7 +78,7 @@ public class QbarNative {
     /**
      * 获取当前版本号
      *
-     * @return 版本
+     * @return 版本：3.2.20190712
      */
     protected static native String GetVersion();
 

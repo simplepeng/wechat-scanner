@@ -3,10 +3,8 @@ package com.tencent.qbar
 import android.content.Context
 import android.graphics.Point
 import android.graphics.Rect
-import android.graphics.YuvImage
 import cn.maizz.kotlin.extension.java.io.copy
 import cn.maizz.kotlin.extension.java.io.notExists
-import cn.maizz.kotlin.extension.kotlin.asFile
 import java.io.File
 import java.io.IOException
 
@@ -111,6 +109,8 @@ class WechatScanner {
 
     /**
      * 当前扫一扫版本信息
+     *
+     * @return 3.2.20190712
      */
     fun version(): String = QbarNative.GetVersion()
 
@@ -131,10 +131,6 @@ class WechatScanner {
         val nativeGrayRotateCropSubData = ByteArray(crop.width() * crop.height() * 3 / 2)
         val nativeGrayRotateCropSubResult: Int = QbarNative.nativeGrayRotateCropSub(data, size.x, size.y, crop.left, crop.top, crop.width(), crop.height(), nativeGrayRotateCropSubData, nativeGrayRotateCropSubDataWH, rotation, 0)
         if (nativeGrayRotateCropSubResult != 0) throw RuntimeException("Native.nativeGrayRotateCropSub error: $nativeGrayRotateCropSubResult")
-
-        YuvImage(nativeGrayRotateCropSubData, android.graphics.ImageFormat.NV21, nativeGrayRotateCropSubDataWH[0], nativeGrayRotateCropSubDataWH[1], null)
-            .compressToJpeg(Rect(0, 0, nativeGrayRotateCropSubDataWH[0], nativeGrayRotateCropSubDataWH[1]), rotation, "/sdcard/mine-gray.jpg".asFile().outputStream())
-
 
         val scanImageResult: Int = QbarNative.ScanImage(nativeGrayRotateCropSubData.copyOf(), nativeGrayRotateCropSubDataWH[0], nativeGrayRotateCropSubDataWH[1], qBarId)
         if (scanImageResult != 0) throw RuntimeException("Native.ScanImage error: $scanImageResult")
