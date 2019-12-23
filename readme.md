@@ -19,7 +19,7 @@
 ```groovy
 // 引入私有仓库地址
 repositories {
-	maven { url 'http://nexus.corp.imdada.cn/content/repositories/snapshots' }
+	maven { url 'https://jitpack.io' }
 }
 // 引入本项目的包文件
 dependencies {
